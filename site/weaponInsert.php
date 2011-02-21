@@ -20,8 +20,9 @@
 	$weapon_type=$_POST["weaponType"];
 	$weapon_provider=$_POST["weaponProvider"];
 	$weapon_usage=$_POST["weaponUsage"];
-	$weapon_maintenance=$_POST("weaponMain");
+	$weapon_maintenance=$_POST["weaponMain"];
 	$weapon_name=$_POST["weaponDurability"];
 	
-	
+        $db= mysqli_connect('localhost', 'zombieUser', 'zombie', 'zombiedb')
+	or die ("ERROR: connecting to mysql server!");	
 	?>

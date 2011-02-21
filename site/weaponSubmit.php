@@ -18,14 +18,14 @@
 	
 	
 	<div id="content">
-		<div class="post">
+	<div class="post">
 		
 		<p><b>Provide us(and by extension, your fellow survivors) with a little information regarding a tool
 	for agressive negotiation with the ambassadors of the undead. Please specify name, type(firearm,blade,explosive,etc)
 	and the other requested information below.</b></p>
 	<BR>
 	<BR>
-<form>  
+<form id="weaponForm" name="weaponForm" method="post" action="weaponInsert.php">  
 <p><label for="weaponName">Weapon Name:</label> <input type="text" name=weaponName id="weaponName"/></p>
 <p><label for="weaponType">Weapon Type:</label><input type="text" name=weaponType id="weaponType"/></p>
 <p><label for="weaponProvider">Weapon Provider:</label> <input type="text" name=weaponProvider id="weaponProvider"/></p>
