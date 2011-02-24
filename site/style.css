@@ -38,6 +38,20 @@ h3 {
 	font-size: 1em;
 }
 
+label
+{
+width: 8em;
+float: left;
+text-align:left;
+margin-right: 0.5em;
+display: block
+}
+
+.submit input
+{
+margin-left: 4.5em;
+}
+
 p, ul, ol {
 	line-height: 200%;
 }
@@ -99,7 +113,7 @@ hr {
 /* Page */
 
 #page {
-	width: 830px;
+	width: 1250px;
 	margin: 0 auto;
 }
 
@@ -107,9 +121,10 @@ hr {
 
 #content {
 	float: right;
-	width: 530px;
+	width: 800px;
 	margin: 0;
 	margin-bottom: 30px;
+	margin-right: 100px;
 }
 
 .post {
@@ -119,7 +134,7 @@ hr {
 .title {
 	margin: 0;
 	padding-bottom: 5px;
-	font-size: 24px;
+	font-size: 30px;
 	font-family: Georgia, "Times New Roman", Times, serif;
 	color: #FFFFFF;
 }
@@ -207,6 +222,7 @@ hr {
 #sidebar {
 	float: left;
 	width: 250px;
+	margin-left: 50px;
 }
 
 #sidebar ul {

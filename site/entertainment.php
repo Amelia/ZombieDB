@@ -13,6 +13,7 @@
 <!-- start header -->
 <?php
 	include 'header.php';
+	include 'dbconnect.php';
 ?>
 <!-- end header -->
 <!-- start page -->
@@ -20,22 +21,97 @@
 	<!-- start content -->
 	<div id="content">
 		<div class="post">
-			<h1 class="title">Movies <?php include 'search.php'; ?></h1>
+		
+			<h1 class="title"> 
+			<form action="entertainment.php" method="post" class="searchform">
+			Movies
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;
+					<input type="text" id="searchm" name="searchm" />
+					<input type="submit" class="formbutton" value="Search" />
+			</form>
+			</h1>
+			
 			<div class="movies">
-				<table border=1 cellpadding=20 width=530>
-					<tr><th>Movie</th><th>Rating</th><th>Description</th></tr>
-					<tr><td>28 Days Later</td><td>8</td><td>It's about Zombies for 28 days</td>
-				</table>
+<?php
+	if($_POST['searchm'] != null)
+	{
+		$search_value = mysql_real_escape_string($_POST['searchm']);		
+		$result = mysql_query("SELECT * FROM z_films WHERE title LIKE '%".$search_value."%' OR mpaa_rating LIKE '%".$search_value."%'");
+	}
+	else
+	{
+		$result = mysql_query("SELECT * FROM z_films ORDER BY film_id DESC LIMIT 5");
+	}
+	
+	echo "<table border=1 cellpadding=20>
+		<tr>
+		<th>Title</th>
+		<th>Rating</th>
+		<th>Description</th>
+		</tr>";
+		
+	while($row = mysql_fetch_array($result))
+	   {
+	   echo "<tr>";
+	   echo "<td>" . $row['title'] . "</td>";
+	   echo "<td>" . $row['mpaa_rating'] . "</td>";
+	   echo "<td>" . $row['reasoning'] . "</td>";
+	   echo "</tr>";
+	   }
+	   echo "</table>";
+	
+?>
+	 <h4><a href="movieSubmit.php">Suggest a movie we left out?</a></h4>
 			</div>
 			<p class="meta"><a href="#" class="more">Read More</a> &nbsp;&nbsp;&nbsp; <a href="#" class="comments">Comments (0)</a></p>
 		</div>
 		<div class="post">
-			<h1 class="title">Games <?php include 'search.php'; ?></h1>
+			<h1 class="title"> 
+			<form action="entertainment.php" method="post" class="searchform">
+			Games
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;
+					<input type="text" id="searchg" name="searchg" />
+					<input type="submit" class="formbutton" value="Search" />
+			</form>
+			</h1>
 			<div class="games">
-				<table border=1 cellpadding=20 width=530>
-					<tr><th>Game</th><th>Rating</th><th>Description</th></tr>
-					<tr><td>Left4Dead</td><td>9</td><td>It's more about infected but, whatevs</td>
-				</table>
+<?php
+	if($_POST['searchg'] != null)
+	{
+		$search_value = mysql_real_escape_string($_POST['searchg']);		
+		$result = mysql_query("SELECT * FROM z_games WHERE title LIKE '%".$search_value."%' OR esrb_rating LIKE '%".$search_value."%'");
+	}
+	else
+	{
+		$result = mysql_query("SELECT * FROM z_games ORDER BY game_id DESC LIMIT 5");
+	}
+	
+	echo "<table border=1 cellpadding=20>
+		<tr>
+		<th>Title</th>
+		<th>Rating</th>
+		<th>Description</th>
+		</tr>";
+		
+	while($row = mysql_fetch_array($result))
+	   {
+	   echo "<tr>";
+	   echo "<td>" . $row['title'] . "</td>";
+	   echo "<td>" . $row['esrb_rating'] . "</td>";
+	   echo "<td>" . $row['reasoning'] . "</td>";
+	   echo "</tr>";
+	   }
+	   echo "</table>";
+	
+?>
+              <h4><a href="gameSubmit.php">Know a good zombie game we're missing? </a></h4>
+
 			</div>
 			<p class="meta"><a href="#" class="more">Read More</a> &nbsp;&nbsp;&nbsp; <a href="#" class="comments">Comments (0)</a></p>
 		</div>

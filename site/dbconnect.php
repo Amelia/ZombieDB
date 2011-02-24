@@ -1,3 +1,8 @@
 <?php
-$db = mysqli_connect('localhost', 'zombieUser', 'zombie', 'zombiedb') or die ("Couldn't dig up any zombies !");
+$db = mysql_connect('localhost', 'zombieUser', 'zombie');
+if (!$db)
+{
+	die("Couldn't dig up any zombies !");
+} 
+mysql_select_db("zombiedb", $db);
 ?>

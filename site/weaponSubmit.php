@@ -30,17 +30,19 @@
 <p><label for="weaponType">Weapon Type:</label><input type="text" name=weaponType id="weaponType"/></p>
 <p><label for="weaponProvider">Weapon Provider:</label> <input type="text" name=weaponProvider id="weaponProvider"/></p>
 </br>
-
+<p>
+</br>
+</p><p>
 Weapon Usage Info:<BR>
-<TEXTAREA NAME="weaponUsage" COLS=40 ROWS=6>
+<TEXTAREA NAME="weaponUsage" ID="weaponUsage" COLS=40 ROWS=6>
 
-</TEXTAREA></p>
-
+</TEXTAREA>
+</p><p>
 Weapon Maintenance:<BR>
-<TEXTAREA NAME="weaponMain" COLS=40 ROWS=6>
+<TEXTAREA NAME="weaponMain" ID="weaponMain" COLS=40 ROWS=6>
 
-</TEXTAREA></p>
-
+</TEXTAREA>
+</p>
 <tr><td>Weapon Durability:</td><td>1<input type="range" name="weaponDurability" min="1" max="100" step="5" value="5"/>100</td></tr>
 
 <p class ="submit"><input type ="submit" value="Submit" />
