@@ -16,6 +16,7 @@ Date: 2011-02-22 22:10:20
 DROP DATABASE IF EXISTS `zombiedb`;
 CREATE DATABASE IF NOT EXISTS `zombiedb`;
 USE `zombiedb`;
+GRANT ALL PRIVILEGES ON zombiedb.* to 'zombieUser'@'localhost' identified by 'zombie';
 
 SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
