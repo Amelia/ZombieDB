@@ -40,10 +40,10 @@
 			</h1>
 			<div class="games">
 <?php
-	if((isset($_POST['searchg'])) && ($_POST['searchg'] != null)){
+	if($_POST['searchg'] != null){
 		$search_value = mysqli_real_escape_string($db, $_POST['searchg']);		
 		$result = mysqli_query($db, "SELECT * FROM z_games WHERE title LIKE '%".$search_value."%' OR esrb_rating LIKE '%".$search_value."%'");
-	}else if((isset($_POST['searchall'])) && ($_POST['searchall'] != null)){
+	}else if($_POST['searchall'] != null){
 		$result = mysqli_query($db, "SELECT * FROM z_games ORDER BY game_id DESC");
 	}else{
 		$result = mysqli_query($db, "SELECT * FROM z_games ORDER BY game_id DESC LIMIT 5");
@@ -67,7 +67,7 @@
 	
 	echo "</div>
 		 <p class=\"meta\">";
-	if (isset($_SESSION)) {
+	if (isset($_SESSION['name'])) {
 	    echo "<a href=\"gameSubmit.php\">Know a good zombie game we're missing? </a>";
 	}else{
 		echo "Login to suggest a Game";

@@ -39,14 +39,14 @@
 <?php
 
   
-	if((isset($_POST['searchw'])) && ($_POST['searchw'] != null))
+	if($_POST['searchw'] != null)
 	{
 		$search_value = mysqli_real_escape_string($db, $_POST['searchw']);
 	//	echo $_POST['searchw'];
 	//	echo $search_value;
 		$result = mysqli_query($db, "SELECT * FROM weapons_general WHERE weapon_name LIKE '%".$search_value."%' OR weapon_type LIKE '%".$search_value."%' OR durability LIKE '%".$search_value."%' OR maintenance LIKE '%".$search_value."%'");
 	}
-	else if((isset($_POST['searchall'])) && ($_POST['searchall'] != null))
+	else if($_POST['searchall'] != null)
 	{
 		$result = mysqli_query($db, "SELECT * FROM weapons_general ORDER BY weapon_id DESC");
 	}
@@ -90,7 +90,7 @@
 		echo "</div>
 		 <p class=\"meta\">";
 		 
-		   	if (isset($_SESSION)) {
+		   	if (isset($_SESSION['name'])) {
 	            echo "<a href=\"weaponSubmit.php\">Suggest General Weapon Implement </a>";
 			}else{
 				echo "Login to suggest a General Weapon";
@@ -154,7 +154,7 @@
 	   echo "</div>
 		 <p class=\"meta\">";
 		
-		   	if (isset($_SESSION)) {
+		   	if (isset($_SESSION['name'])) {
 	            echo "<a href=\"firearmSubmit.php\">Suggest Aggressive Firearm Implement </a>";
 			}else{
 				echo "Login to suggest an Agressive Firearm";

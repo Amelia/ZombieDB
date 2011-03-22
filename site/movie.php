@@ -44,10 +44,10 @@
 			
 			<div class="movies">
 <?php
-	if((isset($_POST['searchm'])) && ($_POST['searchm'] != null)){
+	if($_POST['searchm'] != null){
 		$search_value = mysqli_real_escape_string($db, $_POST['searchm']);		
 		$result = mysqli_query($db, "SELECT * FROM z_films WHERE title LIKE '%".$search_value."%' OR mpaa_rating LIKE '%".$search_value."%'");
-	}else if((isset($_POST['searchall'])) && ($_POST['searchall'] != null)){
+	}else if($_POST['searchall'] != null){
 		$result = mysqli_query($db, "SELECT * FROM z_films ORDER BY film_id");
 	}else{
 		$result = mysqli_query($db, "SELECT * FROM z_films ORDER BY film_id DESC LIMIT 5");
@@ -73,7 +73,7 @@
 			echo "</div>
 				 <p class=\"meta\">";
 				 
-			if (isset($_SESSION)) {
+			if (isset($_SESSION['name'])) {
 				echo "<a href=\"movieSubmit.php\">Suggest a movie we left out?</a>";
 			}else{
 				echo "Login to suggest a Movie";
