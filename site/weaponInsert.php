@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?php session_start(); ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
@@ -23,8 +23,8 @@
 	$weapon_name=$_POST["weaponName"];
 	$weapon_type=$_POST["weaponType"];
 	$weapon_provider=$_POST["weaponProvider"];
-	$weapon_usage= mysql_real_escape_string($_POST["weaponUsage"]);
-	$weapon_maintenance=mysql_real_escape_string($_POST["weaponMain"]);
+	$weapon_usage= mysqli_real_escape_string($db, $_POST["weaponUsage"]);
+	$weapon_maintenance=mysqli_real_escape_string($db, $_POST["weaponMain"]);
 	$weapon_durability=$_POST["weaponDurability"];
 	
         

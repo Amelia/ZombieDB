@@ -1,7 +1,7 @@
 <?php
+	session_start();
 	include 'header.php';
 	include 'dbconnect.php';
-	
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -14,11 +14,11 @@
 <meta name="description" content="" />
 <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
+
 <body>
 <div id="wrapper">
-<!-- start header -->
-<!-- end header -->
-<!-- start page -->
+
+
 <div id="page">
 	<!-- start content -->
 	<div id="content">
@@ -27,26 +27,32 @@
 			<form action="weapons.php" method="post" class="searchform">
 			Effective General Weapons
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;
 					<input type="text" id="searchw" name="searchw" />
 					<input type="submit" class="formbutton" value="Search" />
+					<form action="weapons.php" method="post" class="searchform">
+					<input type="hidden" id="searchall" name="searchall" value="*" />
+					<input type="submit" class="formbutton" value="Show All" />
 			</form>
 			</h1>
 			<div class="weapons">
 <?php
 
   
-	if($_POST['searchw'] != null)
+	if((isset($_POST['searchw'])) && ($_POST['searchw'] != null))
 	{
-		$search_value = mysql_real_escape_string($_POST['searchw']);
+		$search_value = mysqli_real_escape_string($db, $_POST['searchw']);
 	//	echo $_POST['searchw'];
 	//	echo $search_value;
-		$result = mysql_query("SELECT * FROM weapons_general WHERE weapon_name LIKE '%".$search_value."%' OR weapon_type LIKE '%".$search_value."%'	OR durability LIKE '%".$search_value."%' OR maintenance LIKE '%".$search_value."%'");
+		$result = mysqli_query($db, "SELECT * FROM weapons_general WHERE weapon_name LIKE '%".$search_value."%' OR weapon_type LIKE '%".$search_value."%' OR durability LIKE '%".$search_value."%' OR maintenance LIKE '%".$search_value."%'");
+	}
+	else if((isset($_POST['searchall'])) && ($_POST['searchall'] != null))
+	{
+		$result = mysqli_query($db, "SELECT * FROM weapons_general ORDER BY weapon_id DESC");
 	}
 	else
 	{
-		$result = mysql_query("SELECT * FROM weapons_general ORDER BY weapon_id DESC LIMIT 5");
+		$result = mysqli_query($db, "SELECT * FROM weapons_general ORDER BY weapon_id DESC LIMIT 5");
 	}
 		echo "<table border=1 cellpadding=10 >
 		<tr>
@@ -59,7 +65,7 @@
 		</tr>";
 		
 	
-	while($row = mysql_fetch_array($result))
+	while($row = mysqli_fetch_array($result))
 	   {
 	   echo "<tr><td></td></tr>";
 	   echo "<tr>";
@@ -80,11 +86,17 @@
 	   
 	   }
 	   echo "</table>";				
-?>
-		   	
-	           <h4><a href="weaponSubmit.php">Suggest Aggressive Survival Implement </a></h4>
-	               
-			</div>
+
+		echo "</div>
+		 <p class=\"meta\">";
+		 
+		   	if (isset($_SESSION)) {
+	            echo "<a href=\"weaponSubmit.php\">Suggest General Weapon Implement </a>";
+			}else{
+				echo "Login to suggest a General Weapon";
+			}
+		echo "</p>";
+?>	               
 			<p>&nbsp;</p>
 			
 			<h1 class="title"> 
@@ -95,6 +107,9 @@
 			&nbsp;&nbsp;
 					<input type="text" id="searchwf" name="searchwf" />
 					<input type="submit" class="formbutton" value="Search" />
+					<form action="weapons.php" method="post" class="searchform">
+					<input type="hidden" id="searchall2" name="searchall2" value="*" />
+					<input type="submit" class="formbutton" value="Show All" />
 			</form>
 			</h1>
 			<div class="weapons">
@@ -102,22 +117,26 @@
 	if($_POST['searchwf'] != null)
 	{
 		$search_value = $_POST['searchwf'];
-		$result2 = mysql_query("SELECT * FROM weapons_firearms WHERE weapon_name LIKE '%".$search_value."%' OR caliber LIKE '%".$search_value."%' OR rounds_per_reload LIKE '%".$search_value."%'");
+		$result2 = mysqli_query($db, "SELECT * FROM weapons_firearms WHERE weapon_name LIKE '%".$search_value."%' OR caliber LIKE '%".$search_value."%' OR rounds_per_reload LIKE '%".$search_value."%'");
+	}
+	else if($_POST['searchall2'] != null)
+	{
+		$result2 = mysqli_query($db, "SELECT * FROM weapons_firearms ORDER BY firearm_id DESC");	
 	}
 	else
 	{
-		$result2 = mysql_query("SELECT * FROM weapons_firearms ORDER BY firearm_id DESC LIMIT 5");
+		$result2 = mysqli_query($db, "SELECT * FROM weapons_firearms ORDER BY firearm_id DESC LIMIT 5");
 	}
 		echo "<table border=1 cellpadding=15>
 		<tr>
 		<th>Weapon Name</th>
 		<th>Caliber</th>
-		<th>Rounds_per_Reload</th>
+		<th>Rounds per Reload</th>
 		<!-- <th>Usage</th> -->
 		</tr>";
 		
 	
-	while($row = mysql_fetch_array($result2))
+	while($row = mysqli_fetch_array($result2))
 	   {
 	   echo "<tr><td></td></tr>";
 	   echo "<tr>";
@@ -131,13 +150,17 @@
 	   echo "</tr>";
 	   }
 	   echo "</table>";
+	   
+	   echo "</div>
+		 <p class=\"meta\">";
 		
-				
-?>
-		   	
-	           <h4><a href="firearmSubmit.php">Suggest Aggressive Firearm Implement </a></h4>
-	               
-			</div>
+		   	if (isset($_SESSION)) {
+	            echo "<a href=\"firearmSubmit.php\">Suggest Aggressive Firearm Implement </a>";
+			}else{
+				echo "Login to suggest an Agressive Firearm";
+			}
+		echo "</p>";
+?>	        
 		</div>
 	</div>
 	<!-- end content -->

@@ -1,5 +1,4 @@
-<?php session_start(); ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?php session_start(); ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -21,15 +20,12 @@
 	<!-- start content -->
 	<div id="content">
 		<div class="post">
-			<h1 class="title">Admins</h1>
-			<div class="contacts">
-				<ul>
-					<li>Amelia Toms</li>
-					<li>Christian Karrs</li>
-					<li>Joseph Nguyen</li>
-					<li>Matt Miller</li>
-					<li>Phillip Thomas</li>
-				</ul>
+			<h1 class="title"> Survial Checklist</h1>
+			<div class="check">
+				<input type="checkbox" name="supplies" value="Clothes" /> Clothes <br/>
+				<input type="checkbox" name="supplies" value="Water" /> Water <br/>
+				<input type="checkbox" name="supplies" value="Matches" /> Matches <br/>
+				<input type="checkbox" name="supplies" value="First Aid" /> First Aid 
 			</div>
 		</div>
 	</div>

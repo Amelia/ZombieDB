@@ -80,11 +80,11 @@ hr {
 /* Header */
 
 #header {
-	width: 830px;
+	width: 1100px;
 	height: 166px;
-	margin: 0 auto;
+	margin: 0px 92px auto;
 	padding-bottom: 10px;
-	background: url(images/img03.jpg) no-repeat left top;
+	background: url(images/img04.jpg) no-repeat left top;
 }
 
 #header h1, #header p {
@@ -159,9 +159,9 @@ hr {
 	padding: 10px 10px;
 	margin: 30px 0;
 	background: url(images/img02.jpg) repeat-x left top;
-	text-transform: uppercase;
+	//text-transform: uppercase;
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 10px;
+	font-size: 12px;
 }
 
 .meta .more {

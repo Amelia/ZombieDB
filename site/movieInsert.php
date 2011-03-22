@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?php session_start(); ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
@@ -20,11 +20,17 @@
 		<div class="post">
 
 	<?php
-	$title = mysql_real_escape_string($_POST["movieTitle"]);
-	$mpaa = mysql_real_escape_string($_POST["mpaa"]);
-	$release = mysql_real_escape_string($_POST["year"]);        
-    $reasoning = mysql_real_escape_string($_POST["reasoning"]);
+	$title = mysqli_real_escape_string($db, $_POST["movieTitle"]);
+	$mpaa = mysqli_real_escape_string($db, $_POST["mpaa"]);
+	$release = mysqli_real_escape_string($db, $_POST["year"]);        
+    $reasoning = mysqli_real_escape_string($db, $_POST["reasoning"]);
 	$run_time = $_POST["run_time"];
+	
+	// echo $title;
+	// echo $mpaa;
+	// echo $release;
+	// echo $reasoning;
+	// echo $run_time;
 	
     $query= "INSERT INTO z_films(title,mpaa_rating,year_released,reasoning, run_time)	VALUES('".$title."','".$mpaa."','".$release."','".$reasoning."', '".$run_time."')";
 	$db= mysqli_connect('localhost', 'zombieUser', 'zombie', 'zombiedb')
