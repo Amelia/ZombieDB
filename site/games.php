@@ -61,6 +61,23 @@
 	   echo "<td>" . $row['title'] . "</td>";
 	   echo "<td>" . $row['esrb_rating'] . "</td>";
 	   echo "<td>" . $row['reasoning'] . "</td>";
+       echo "<td>";
+       if (isset($_SESSION['name'])) {
+           $addF_condition = mysqli_query($db, "SELECT * FROM users natural join z_game_preferences natural join z_games where users.username = \"" . $_SESSION['name']."\" AND game_id = \"".$row['game_id']."\"");
+           if(mysqli_fetch_array($addF_condition) == null){
+                    echo "<form action=\"favoriteInsert.php\" method=\"post\" class=\"preferenceform\">
+                    <input type=\"hidden\" id=\"game_id\" name=\"game_id\" value=" . $row['game_id'] ." />
+                    <input type=\"submit\" class=\"formbutton\" value=\"Add to Favorites\" />
+                    </form>";
+           }
+           else{
+               //print_r(mysqli_fetch_array($addW_condition));
+               echo "Already Favorited";
+           }
+       }else{
+           echo "Log in to Favorite";
+       }
+       echo "</td>";
 	   echo "</tr>";
 	}
 	echo "</table>";

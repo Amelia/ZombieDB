@@ -22,6 +22,8 @@
 				echo "</ul>";
 			}else{
 				echo "<h2>Welcome, ". $_SESSION['name']. "</h2>";
+                echo "<ul><li><a href=\"profile.php\">Profile</a></li></ul>";
+                echo "<ul><li><a href=\"changePW.php\">Change Password</a></li></ul>";
 				echo "<ul><li><a href=\"logout.php\">Logout</a></li></ul>";
 			}
 		?>
@@ -39,6 +41,7 @@
 				<li><a href="weapons.php">Effective Weapons</a></li>
 				<li><a href="games.php">Zombie Games</a></li>
 				<li><a href="movie.php">Zombie Movies</a></li>
+                <li><a href="book.php">Zombie Books</a></li>
 				<li><a href="contacts.php">Contact Us</a></li>
 			</ul>
 		</li>

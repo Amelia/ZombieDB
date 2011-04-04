@@ -24,53 +24,53 @@
 	<!-- start content -->
 	<div id="content">
 		<div class="post">
-		
 			<h1 class="title"> 
-			<form action="movie.php" method="post" class="searchform">
-			Movies
+			<form action="book.php" method="post" class="searchform">
+			Books
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;
-					<input type="text" id="searchm" name="searchm" />
+					<input type="text" id="searchg" name="searchg" />
 					<input type="submit" class="formbutton" value="Search" />
-					<form action="movie.php" method="post" class="searchform">
+					<form action="book.php" method="post" class="searchform">
 					<input type="hidden" id="searchall" name="searchall" value="*" />
 					<input type="submit" class="formbutton" value="Show All" />
 			</form>
-			</form>
-			
 			</h1>
-			
-			<div class="movies">
+			<div class="books">
 <?php
-	if($_POST['searchm'] != null){
-		$search_value = mysqli_real_escape_string($db, $_POST['searchm']);		
-		$result = mysqli_query($db, "SELECT * FROM z_films WHERE title LIKE '%".$search_value."%' OR mpaa_rating LIKE '%".$search_value."%'");
+	if($_POST['searchg'] != null){
+		$search_value = mysqli_real_escape_string($db, $_POST['searchg']);		
+		$result = mysqli_query($db, "SELECT * FROM z_books WHERE title LIKE '%".$search_value."%'");
 	}else if($_POST['searchall'] != null){
-		$result = mysqli_query($db, "SELECT * FROM z_films ORDER BY film_id");
+		$result = mysqli_query($db, "SELECT * FROM z_books ORDER BY book_id DESC");
 	}else{
-		$result = mysqli_query($db, "SELECT * FROM z_films ORDER BY film_id DESC LIMIT 5");
+		$result = mysqli_query($db, "SELECT * FROM z_books ORDER BY book_id DESC LIMIT 5");
 	}
 	
 	echo "<table border=1 cellpadding=20>
 		<tr>
 		<th>Title</th>
-		<th>Rating</th>
 		<th>Description</th>
 		</tr>";
-		
+    /*if(mysqli_fetch_array($result) == null)
+        echo "empty";
+    else
+	print_r(mysqli_fetch_array($result));*/
 	while($row = mysqli_fetch_array($result)){
 	   echo "<tr>";
 	   echo "<td>" . $row['title'] . "</td>";
-	   echo "<td>" . $row['mpaa_rating'] . "</td>";
-	   echo "<td>" . $row['reasoning'] . "</td>";
+       if($row['reasoning'] == null)
+           echo "<td> N/A </td>";
+       else
+	       echo "<td>" . $row['reasoning'] . "</td>";
        echo "<td>";
        if (isset($_SESSION['name'])) {
-           $addF_condition = mysqli_query($db, "SELECT * FROM users natural join z_film_preferences natural join z_films where users.username = \"" . $_SESSION['name']."\" AND film_id = \"".$row['film_id']."\"");
+           $addF_condition = mysqli_query($db, "SELECT * FROM users natural join z_book_preferences natural join z_books where users.username = \"" . $_SESSION['name']."\" AND book_id = \"".$row['book_id']."\"");
            if(mysqli_fetch_array($addF_condition) == null){
                     echo "<form action=\"favoriteInsert.php\" method=\"post\" class=\"preferenceform\">
-                    <input type=\"hidden\" id=\"film_id\" name=\"film_id\" value=" . $row['film_id'] ." />
+                    <input type=\"hidden\" id=\"book_id\" name=\"book_id\" value=" . $row['book_id'] ." />
                     <input type=\"submit\" class=\"formbutton\" value=\"Add to Favorites\" />
                     </form>";
            }
@@ -86,21 +86,18 @@
 	}
 	echo "</table>";
 	
-
-			echo "</div>
-				 <p class=\"meta\">";
-				 
-			if (isset($_SESSION['name'])) {
-				echo "<a href=\"movieSubmit.php\">Suggest a movie we left out?</a>";
-			}else{
-				echo "Login to suggest a Movie";
-			}
-			echo "</p>";
-			
+	echo "</div>
+		 <p class=\"meta\">";
+	if (isset($_SESSION['name'])) {
+	    echo "<a href=\"bookSubmit.php\">Know a good zombie book we're missing? </a>";
+	}else{
+		echo "Login to suggest a book";
+	}
+	
+	echo"</p>";
 ?>
-		</div>
-		
-	</div>
+</div>
+</div>
 	<!-- end content -->
 	<!-- start sidebar -->
 	<?php

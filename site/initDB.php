@@ -36,9 +36,9 @@ CREATE TABLE `building_types` (
 // -- ----------------------------
 mysqli_query($db,"
 INSERT INTO `building_types` VALUES ('1', 'Gazebo', '1', 'Generally, during a zombie apocalypse, its a good idea to choose a shelter with walls.')
-, ('2', 'Underground Bunker', '10', 'If they can figure out where you are, there are limited access points - provided your zombies don’t have superhuman tunneling capabilities.')
+, ('2', 'Underground Bunker', '10', 'If they can figure out where you are, there are limited access points - provided your zombies donï¿½t have superhuman tunneling capabilities.')
 , ('3', 'House', '4', 'The security of houses can vary; but with windows and doors, there are too many points of entry to make one truly safe from zombies.')
-, ('4', 'Jail', '9', 'Although they’re meant to keep people in, they’re great for keeping zombies out. Watch towers give you a combative edge, and the high barbed wire fences keep undead invaders at bay.')
+, ('4', 'Jail', '9', 'Although theyï¿½re meant to keep people in, theyï¿½re great for keeping zombies out. Watch towers give you a combative edge, and the high barbed wire fences keep undead invaders at bay.')
 , ('5', 'Office Building', '6', 'Office buildings have as many (if not more) windows and doors as houses. However, their height gives you tactical advantage; you can see them coming and take defensive measures.');
 ");
 
@@ -116,7 +116,7 @@ INSERT INTO `supply_list` VALUES ('1', 'bandages', 'medical', '8', '10', 'Surviv
 , ('5', 'MRE', 'generic', '10', '15', 'Escaping swarms of killer zombies can be draining. Calorie-packed MREs will keep you energized and on your toes.')
 , ('6', 'lighter', 'generic', '10', '3', 'Lighters are quicker and less cumbersome than flint and steel - problem is they have limited use, so stock up')
 , ('7', 'clean shirt', 'generic', '2', '1', 'You have bigger things to worry about than laundry, leave the clean clothes behind - you can only carry so much.')
-, ('8', 'radio', 'generic', '8', '1', 'You’ll need a means of contacting other survivors. Radios are a bit bulky, but they are worth the space they take up.')
+, ('8', 'radio', 'generic', '8', '1', 'Youï¿½ll need a means of contacting other survivors. Radios are a bit bulky, but they are worth the space they take up.')
 , ('9', 'hydrogen peroxide', 'medical', '8', '1', 'Keep your wounds clean and stave off infection with this antiseptic.');
 ");
 
@@ -125,15 +125,19 @@ INSERT INTO `supply_list` VALUES ('1', 'bandages', 'medical', '8', '10', 'Surviv
 // -- ----------------------------
 mysqli_query($db,"
 CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(25) NOT NULL DEFAULT '',
   `password` char(50) DEFAULT NULL,
-  PRIMARY KEY (`username`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`user_id`,`username`),
+  KEY `user_id` (`user_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 ");
 
 // -- ----------------------------
 // -- Records of users
 // -- ----------------------------
+
+mysqli_query($db, "INSERT INTO `users` VALUES ('5', 'admin', '4f57181dcaade980555f2ce6755ca425f00658be')");
 
 // -- ----------------------------
 // -- Table structure for `weapons_firearms`
@@ -158,6 +162,20 @@ INSERT INTO `weapons_firearms` VALUES ('1', 'magnum revolver', '.45', '6', 'A go
 , ('3', 'Barrett M107A1', '.50', '10', 'The perfect choice for long distance zombie defense. BOOM headshot!')
 , ('4', 'Remington 870', '12 guage', '5', 'Lock and load with this pump action gem. Now you see \'em, now you don\'t!')
 , ('5', 'M249 SAW', '5.56', '300', 'Is your lawn riddled with unwanted undead? Mow them down without breaking a sweat!');
+");
+    
+// -- ----------------------------
+// -- Table structure for `weapon_firearm_preferences`
+// -- ----------------------------
+mysqli_query($db, "
+CREATE TABLE `weapon_firearm_preferences` (
+  `weapon_firearm_preference_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `firearm_id` int(11) NOT NULL,
+  PRIMARY KEY (`weapon_firearm_preference_id`),
+  KEY `user_id` (`user_id`) USING BTREE,
+  KEY `firearm_id` (`firearm_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 ROW_FORMAT=FIXED;
 ");
 
 // -- ----------------------------
@@ -186,11 +204,25 @@ INSERT INTO `weapons_general` VALUES ('1', 'machete', 'blade', '7', 'For slicing
 , ('9', 'grenade', 'explosive', '1', 'Fire in the hole! Just pull the pin and you\'re done!', 'none')
 , ('10', 'molotov cocktail', 'explosive', '1', 'Do you like your zombies well-done? Invite your fellow survivors for s\'mores!', 'none');
 ");
+//-- ----------------------------
+//-- Table structure for `weapon_preferences`
+//-- ----------------------------
+mysqli_query($db, "
+CREATE TABLE `weapon_preferences` (
+  `weapon_preference_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `weapon_id` int(11) NOT NULL,
+  PRIMARY KEY (`weapon_preference_id`),
+  KEY `weapon_id` (`weapon_id`),
+  KEY `user_id` (`user_id`) USING BTREE
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 ROW_FORMAT=FIXED;
+");
 // -- ----------------------------
 // -- Table structure for `z_books`
 // -- ----------------------------
 mysqli_query($db,"
 CREATE TABLE `z_books` (
+  `book_id` int(11) NOT NULL AUTO_INCREMENT,
   `isbn` varchar(20) NOT NULL,
   `title` varchar(50) DEFAULT NULL,
   `author_firstname` varchar(15) DEFAULT NULL,
@@ -198,21 +230,35 @@ CREATE TABLE `z_books` (
   `page_count` int(11) DEFAULT NULL,
   `year_published` int(11) DEFAULT NULL,
   `reasoning` varchar(240) DEFAULT NULL,
-  PRIMARY KEY (`isbn`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`book_id`,`isbn`),
+  KEY `book_id` (`book_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 ");
 // -- ----------------------------
 // -- Records of z_books
 // -- ----------------------------
 mysqli_query($db,"
-INSERT INTO `z_books` VALUES ('978-1400049622', 'The Zombie Survival Guide: Complete Protection fro', null, null, '288', '2003', 'Survival Guide')
-, ('978-0060931841', 'World War Z: An Oral History of the Zombie War', null, null, '352', '2007', 'Zombie War Information')
-, ('978-1402220128', 'Zombies for Zombies: Advice and Etiquette for the ', null, null, '272', '2009', 'Guide for Zombie Etiquette')
-, ('978-1453720011', 'A Zombie Apocalypse', null, null, '70', '2010', null)
-, ('978-0982949597', 'The Dying Times (a zombie apocalypse novel)', null, null, '282', '2010', null)
-, ('978-0452296398', 'You Might Be a Zombie and Other Bad News: Shocking', null, null, '320', '2010', 'Zombie Identification')
-, ('978-1449564872', 'The Zombie Survival Guide: How to Live Like a King', null, null, '128', '2009', 'Survival Guide')
-, ('978-0307405777', 'The Zombie Survival Guide: Recorded Attacks ', null, null, '144', '2009', 'Survival Guide');
+INSERT INTO `z_books` VALUES ('1', '978-1400049622', 'The Zombie Survival Guide: Complete Protection fro', null, null, '288', '2003', 'Survival Guide')
+, ('1', '978-0060931841', 'World War Z: An Oral History of the Zombie War', null, null, '352', '2007', 'Zombie War Information')
+, ('2', '978-1402220128', 'Zombies for Zombies: Advice and Etiquette for the ', null, null, '272', '2009', 'Guide for Zombie Etiquette')
+, ('3', '978-1453720011', 'A Zombie Apocalypse', null, null, '70', '2010', null)
+, ('4', '978-0982949597', 'The Dying Times (a zombie apocalypse novel)', null, null, '282', '2010', null)
+, ('5', '978-0452296398', 'You Might Be a Zombie and Other Bad News: Shocking', null, null, '320', '2010', 'Zombie Identification')
+, ('6', '978-1449564872', 'The Zombie Survival Guide: How to Live Like a King', null, null, '128', '2009', 'Survival Guide')
+, ('7', '978-0307405777', 'The Zombie Survival Guide: Recorded Attacks ', null, null, '144', '2009', 'Survival Guide');
+");
+//-- ----------------------------
+//-- Table structure for `z_book_preferences`
+//-- ----------------------------
+mysqli_query($db, "
+CREATE TABLE `z_book_preferences` (
+  `book_preference_id` int(11) NOT NULL AUTO_INCREMENT,
+  `book_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`book_preference_id`),
+  KEY `user_id` (`user_id`),
+  KEY `book_id` (`book_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 ");
 // -- ----------------------------
 // -- Table structure for `z_films`
@@ -238,6 +284,19 @@ INSERT INTO `z_films` VALUES ('1', 'Dawn of the Dead', 'R', '101', '2004', 'This
 , ('4', '28 Days Later', 'R', '113', '2002', 'This film offers the first modern revision in the portrayal of zombie abilities. Rather than showing sluggish undead limping after their prey, these zombies can book it. A good film to prepare you for zombies who are quick on their feet.')
 , ('5', 'Day of the Dead', 'UR', '102', '1985', 'You survived the first wave of undead, but now what? Day of the Dead offers a look at the the breakdown of social and government order one can expect in the event of a zombie epidemic.');
 ");
+//-- ----------------------------
+//-- Table structure for `z_film_preferences`
+//-- ----------------------------
+mysqli_query($db, "
+CREATE TABLE `z_film_preferences` (
+  `film_preference_id` int(11) NOT NULL AUTO_INCREMENT,
+  `film_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`film_preference_id`),
+  KEY `film_id` (`film_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+");
 // -- ----------------------------
 // -- Table structure for `z_games`
 // -- ----------------------------
@@ -256,11 +315,24 @@ CREATE TABLE `z_games` (
 // -- ----------------------------
 mysqli_query($db,"
 INSERT INTO `z_games` VALUES ('1', 'Dead Rising', 'M', '2006', 'Trapped in a mall with a zombie horde, anything can be a weapon. This game will make you an anti-zombie MacGyver!')
-, ('2', 'Left 4 Dead', 'M', '2008', 'You can’t do it alone - learn how to fight off zombies with a team of fellow survivors!')
+, ('2', 'Left 4 Dead', 'M', '2008', 'You canï¿½t do it alone - learn how to fight off zombies with a team of fellow survivors!')
 , ('3', 'Stubbs the Zombie', 'M', '2005', 'Get inside the mind of your enemy! This game puts you in the shoes of a brain-devouring zombie.')
 , ('4', 'Resident Evil', 'M', '1996', 'This game will teach you to manage your resources as ammo is scarce and medical supplies are limited.')
 , ('5', 'Zombies Ate My Neighbors', 'E10+', '1993', 'Be a good neighbor! Saving people is always good, especially during a zombie apocalypse.')
 , ('6', 'The House of the Dead', 'NR', '1996', 'Get out the old light gun and brush up on your shot - accuracy is key if you plan on surviving swarms of undead.');
+");
+//-- ----------------------------
+//-- Table structure for `z_game_preferences`
+//-- ----------------------------
+mysqli_query($db, "
+CREATE TABLE `z_game_preferences` (
+  `game_preference_id` int(11) NOT NULL AUTO_INCREMENT,
+  `game_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`game_preference_id`),
+  KEY `game_id` (`game_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 ");
 // -- ----------------------------
 // -- Table structure for `z_sites`

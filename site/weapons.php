@@ -62,6 +62,7 @@
 		<!-- <th>Provider</th> -->
 		<!-- <th>Usage</th> -->
 		<th>Maintenance</th>
+		<th>&nbsp;</th>
 		</tr>";
 		
 	
@@ -72,13 +73,31 @@
 	   echo "<td>" . $row['weapon_name'] . "</td>";
 	   echo "<td>" . $row['weapon_type'] . "</td>";
 	   echo "<td>" . $row['durability'] . "</td>";
-	   echo "<!-- <td>" . $row['provider'] . "</td> -->";
-	   echo "<!-- <td>" . $row['usage'] . "</td> -->";
-	   echo "<!-- <td>" . $row['maintenance'] . "</td> -->";
+	   //echo "<!-- <td>" . $row['provider'] . "</td> -->";
+	   //echo "<!-- <td>" . $row['usage'] . "</td> -->";
+	   //echo "<!-- <td>" . $row['maintenance'] . "</td> -->";
 	   echo "<td>" . $row['maintenance'] . "</td>";
+       echo "<td>";
+
+	   if (isset($_SESSION['name'])) {
+           $addW_condition = mysqli_query($db, "SELECT * FROM users natural join weapon_preferences natural join weapons_general where users.username = \"" . $_SESSION['name']."\" AND weapon_id = \"".$row['weapon_id']."\"");
+           if(mysqli_fetch_array($addW_condition) == null){
+                    echo "<form action=\"favoriteInsert.php\" method=\"post\" class=\"preferenceform\">
+                    <input type=\"hidden\" id=\"weapon_id\" name=\"weapon_id\" value=" . $row['weapon_id'] ." />
+                    <input type=\"submit\" class=\"formbutton\" value=\"Add to Favorites\" />
+                    </form>";
+           }
+           else{
+               //print_r(mysqli_fetch_array($addW_condition));
+               echo "Already Favorited";
+           }
+       }else{
+            echo "Login to Favorite ";
+       }
+       echo "</td>";
 	   echo "</tr>";
 	   echo "<tr>";
-	   echo "<td COLSPAN=4>Usage: " . $row['usage'] . "</td>";
+	   echo "<td COLSPAN=5>Usage: " . $row['usage'] . "</td>";
 	   echo "</tr>";
 	   //echo "<tr>";
 	   //echo "<td COLSPAN=4>Maintenance: " . $row['maintenance'] . "</td>";
@@ -144,9 +163,26 @@
 	   echo "<td>" . $row['caliber'] . "</td>";
 	   echo "<td>" . $row['rounds_per_reload'] . "</td>";
 	   //echo "<td>" . $row['usage'] . "</td>";
+       echo "<td>";
+       if (isset($_SESSION['name'])) {
+           $addF_condition = mysqli_query($db, "SELECT * FROM users natural join weapon_firearm_preferences natural join weapons_firearms where users.username = \"" . $_SESSION['name']."\" AND firearm_id = \"".$row['firearm_id']."\"");
+           if(mysqli_fetch_array($addF_condition) == null){
+                    echo "<form action=\"favoriteInsert.php\" method=\"post\" class=\"preferenceform\">
+                    <input type=\"hidden\" id=\"firearm_id\" name=\"firearm_id\" value=" . $row['firearm_id'] ." />
+                    <input type=\"submit\" class=\"formbutton\" value=\"Add to Favorites\" />
+                    </form>";
+           }
+           else{
+               //print_r(mysqli_fetch_array($addW_condition));
+               echo "Already Favorited";
+           }
+       }else{
+           echo "Log in to Favorite";
+       }
+       echo "</td>";
 	   echo "</tr>";
 	   echo "<tr>";
-	   echo "<td COLSPAN=4>Usage: " . $row['usage'] . "</td>";
+	   echo "<td COLSPAN=5>Usage: " . $row['usage'] . "</td>";
 	   echo "</tr>";
 	   }
 	   echo "</table>";

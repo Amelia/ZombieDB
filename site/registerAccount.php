@@ -57,11 +57,12 @@ while($row=mysqli_fetch_array($compareResult) and $checkName!=$name){
 
 <?php  
 }else{
-	$query = "INSERT INTO users (username, password ) VALUES('".$name."', '".SHA1($pw)."')";
+	$query = "INSERT INTO users (username, password) VALUES('".$name."', '".SHA1($pw)."')";
 	$result = mysqli_query($db, $query) or die("Error Querying Database");  
 	sleep(3);
 	mysqli_close($db);
-   echo "Thank you ".$name. ", your account has been successfully created!";
+   echo "<p>Thank you ".$name. ", your account has been successfully created!</p>";
+   echo "<p>Please Sign in to your left.</p>";
 	
 }
 ?>  
