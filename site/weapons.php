@@ -59,9 +59,8 @@
 		<th>Weapon Name</th>
 		<th>Weapon Type</th>
 		<th>Durability</th>
-		<!-- <th>Provider</th> -->
-		<!-- <th>Usage</th> -->
 		<th>Maintenance</th>
+		<th>Favorites</th>
 		<th>&nbsp;</th>
 		</tr>";
 		
@@ -151,7 +150,7 @@
 		<th>Weapon Name</th>
 		<th>Caliber</th>
 		<th>Rounds per Reload</th>
-		<!-- <th>Usage</th> -->
+		<th>Favorites</th>
 		</tr>";
 		
 	

@@ -52,7 +52,8 @@
 	echo "<table border=1 cellpadding=20>
 		<tr>
 		<th>Title</th>
-		<th>Description</th>
+		<th>Relevance</th>
+		<th>Favorites</th>
 		</tr>";
     /*if(mysqli_fetch_array($result) == null)
         echo "empty";

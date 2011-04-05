@@ -58,6 +58,7 @@
 		<th>Title</th>
 		<th>Rating</th>
 		<th>Description</th>
+		<th>Favorites</th>
 		</tr>";
 		
 	while($row = mysqli_fetch_array($result)){
