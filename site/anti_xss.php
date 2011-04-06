@@ -8,8 +8,9 @@ if(!$anti_xss_function_exists)
 	{
 		//strip_tags syntax the second parameter lists all ALLOWED html tags
 		$raw = strip_tags($raw,'<b>,<i>,<u>,<font>,<li>,<ul>,<ol>,<p>');
-		$raw = str_replace('\r','',$raw);
-		$raw = str_replace('\n','<br>',$raw);
+		$raw = nl2br($raw);
+		$raw = str_replace("\r",'',$raw);
+		$raw = str_replace("\n",'',$raw);
 		return $raw;
 	}
 }
