@@ -36,9 +36,7 @@
 							<TEXTAREA NAME=\"weaponUsage\" ID=\"weaponUsage\" COLS=40 ROWS=6></TEXTAREA>
 							</p><p>
 							Weapon Maintenance:<BR>
-							<TEXTAREA NAME=\"weaponMain\" ID=\"weaponMain\" COLS=40 ROWS=6>
-
-							</TEXTAREA>
+							<TEXTAREA NAME=\"weaponMain\" ID=\"weaponMain\" COLS=40 ROWS=6></TEXTAREA>
 							</p>
 							<tr><td>Weapon Durability:</td><td>1<input type=\"range\" name=\"weaponDurability\" min=\"1\" max=\"100\" step=\"5\" value=\"5\"/>100</td></tr>
 
