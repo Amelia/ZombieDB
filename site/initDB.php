@@ -425,13 +425,26 @@ else
 			<div class="entry">
 			<H3>Please enter an Administrative account information.
 			<br/><br/>We promise we will not reuse this information
-			<br/><br/>You may need to change the permissions in the file where this is stored so that filenames can be changed.</H3>
+			<br><br>
+			<?php
+				$formEnable='disabled';
+				if(is_writable('initDB.php'))
+				{
+					echo 'Your file permissions appear to be sufficient to install the database.';
+					$formEnable='';
+				}
+				else
+				{
+					echo '<font color="red"><b>It is imperative you change the permissions to allow file renaming by this installer.  Resistance is futile!</b></font>';
+				}
+			?>
+			</H3>
 			<br>
-			Enter Adminstrative Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 	<input type="text" name="root">
+			Enter Adminstrative Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 	<input <?php echo $formEnable ?> type="text" name="root">
 			<br>
-			Enter Adminstrative Password:  &nbsp <input type="password" name="pw">
+			Enter Adminstrative Password:  &nbsp <input <?php echo $formEnable ?> type="password" name="pw">
 			<br>
-			<input type="submit" name="create" value="Create DB">
+			<input <?php echo $formEnable ?> type="submit" name="create" value="Create DB">
 			</div>
 		</form>
 		</div>
