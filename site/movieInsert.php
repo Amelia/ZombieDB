@@ -20,11 +20,12 @@
 		<div class="post">
 
 	<?php
-	$title = mysqli_real_escape_string($db, $_POST["movieTitle"]);
-	$mpaa = mysqli_real_escape_string($db, $_POST["mpaa"]);
-	$release = mysqli_real_escape_string($db, $_POST["year"]);        
-    $reasoning = mysqli_real_escape_string($db, $_POST["reasoning"]);
-	$run_time = $_POST["run_time"];
+	include 'anti_xss.php';
+	$title = mysqli_real_escape_string($db, anti_xss($_POST["movieTitle"]));
+	$mpaa = mysqli_real_escape_string($db, anti_xss($_POST["mpaa"]));
+	$release = mysqli_real_escape_string($db, anti_xss($_POST["year"]));        
+    $reasoning = mysqli_real_escape_string($db, anti_xss($_POST["reasoning"]));
+	$run_time = anti_xss($_POST["run_time"]);
 	
 	// echo $title;
 	// echo $mpaa;

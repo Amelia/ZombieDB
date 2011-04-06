@@ -33,7 +33,8 @@ Released   : 20080208
 
 
 include "dbconnect.php";
-$name = $_POST['username'];
+include "anti_xss.php";
+$name = anti_xss($_POST['username']);
 $pw = $_POST['pw'];
 
 

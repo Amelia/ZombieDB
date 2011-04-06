@@ -20,10 +20,11 @@
 		<div class="post">
 
 	<?php
-	$title = mysqli_real_escape_string($db, $_POST["gameTitle"]);
-	$esrb = mysqli_real_escape_string($db, $_POST["esrb"]);
-	$release = mysqli_real_escape_string($db, $_POST["year"]);        
-    $reasoning = mysqli_real_escape_string($db, $_POST["reasoning"]);
+	include 'anti_xss.php';
+	$title = mysqli_real_escape_string($db, anti_xss($_POST["gameTitle"]));
+	$esrb = mysqli_real_escape_string($db, anti_xss($_POST["esrb"]));
+	$release = mysqli_real_escape_string($db, anti_xss($_POST["year"]));        
+    $reasoning = mysqli_real_escape_string($db, anti_xss($_POST["reasoning"]));
 	
     $query= "INSERT INTO z_games(title,esrb_rating,year_released,reasoning)
 			VALUES('".$title."','".$esrb."','".$release."','".$reasoning."')";

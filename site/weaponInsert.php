@@ -20,12 +20,13 @@
 		<div class="post">
 
 	<?php
-	$weapon_name=$_POST["weaponName"];
-	$weapon_type=$_POST["weaponType"];
-	$weapon_provider=$_POST["weaponProvider"];
-	$weapon_usage= mysqli_real_escape_string($db, $_POST["weaponUsage"]);
-	$weapon_maintenance=mysqli_real_escape_string($db, $_POST["weaponMain"]);
-	$weapon_durability=$_POST["weaponDurability"];
+	include 'anti_xss.php';
+	$weapon_name=anti_xss($_POST["weaponName"]);
+	$weapon_type=anti_xss($_POST["weaponType"]);
+	$weapon_provider=anti_xss($_POST["weaponProvider"]);
+	$weapon_usage= mysqli_real_escape_string($db, anti_xss($_POST["weaponUsage"]));
+	$weapon_maintenance=mysqli_real_escape_string($db, anti_xss($_POST["weaponMain"]));
+	$weapon_durability=anti_xss($_POST["weaponDurability"]);
 	
         
         	
