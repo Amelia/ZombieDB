@@ -20,12 +20,13 @@
 		<div class="post">
 
 	<?php
-	$bookName = mysqli_real_escape_string($db, $_POST["bookName"]);
-	$isbn = mysqli_real_escape_string($db, $_POST["isbn"]);
-	//$author = mysqli_real_escape_string($db, $_POST["author"]);
-	$published = mysqli_real_escape_string($db, $_POST["year"]); 
-	$pages = $_POST["pages"];
-	$reason = mysqli_real_escape_string($db, $_POST["reason"]);
+	include 'anti_xss.php';
+	$bookName = mysqli_real_escape_string($db, anti_xss($_POST["bookName"]));
+	$isbn = mysqli_real_escape_string($db, anti_xss($_POST["isbn"]));
+	//$author = mysqli_real_escape_string($db, anti_xss($_POST["author"]));
+	$published = mysqli_real_escape_string($db, anti_xss($_POST["year"])); 
+	$pages = anti_xss($_POST["pages"]);
+	$reason = mysqli_real_escape_string($db, anti_xss($_POST["reason"]));
 	
     $query= "INSERT INTO z_books(title, isbn, page_count, year_published, reasoning)
 			VALUES('".$bookName."','".$isbn."','".$pages."', '".$published."', '".$reason."')";
