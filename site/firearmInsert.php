@@ -24,12 +24,10 @@
 	$weapon_caliber=$_POST["firearmCaliber"];
 	$weapon_rounds=$_POST["rounds_per_reload"];
 	$weapon_usage=mysqli_real_escape_string($db, $_POST["weaponUsage"]);
-
-	
-        
         	
-        $query= "INSERT INTO weapons_firearms (weapon_name,caliber, rounds_per_reload, `usage`) 
-	VALUES('".$weapon_name."','".$weapon_caliber."','".$weapon_rounds."','".$weapon_usage."')";
+    
+	$query= "INSERT INTO weapons_firearms (weapon_name,caliber, rounds_per_reload, `usage`) 
+			VALUES('".$weapon_name."','".$weapon_caliber."','".$weapon_rounds."','".$weapon_usage."')";
 	$db= mysqli_connect('localhost', 'zombieUser', 'zombie', 'zombiedb')
 	or die ("ERROR: connecting to mysql server!");	
 

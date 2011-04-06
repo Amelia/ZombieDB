@@ -29,9 +29,7 @@
 					</br>
 
 					Reasoning for game selection:<BR>
-					<TEXTAREA NAME=\"reasoning\" COLS=40 ROWS=6>
-
-					</TEXTAREA></p>
+					<TEXTAREA NAME=\"reasoning\" COLS=40 ROWS=6></TEXTAREA></p>
 
 					<p><label for=\"releaseDate\">Release Date:</label>
 						<input type=\"number\" name=\"month\" min=\"1\" max=\"12\" step=\"1\" value=\"1\" size=\"4.5\"/>

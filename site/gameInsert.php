@@ -25,7 +25,8 @@
 	$release = mysqli_real_escape_string($db, $_POST["year"]);        
     $reasoning = mysqli_real_escape_string($db, $_POST["reasoning"]);
 	
-    $query= "INSERT INTO z_games(title,esrb_rating,year_released,reasoning)	VALUES('".$title."','".$esrb."','".$release."','".$reasoning."')";
+    $query= "INSERT INTO z_games(title,esrb_rating,year_released,reasoning)
+			VALUES('".$title."','".$esrb."','".$release."','".$reasoning."')";
 	$db= mysqli_connect('localhost', 'zombieUser', 'zombie', 'zombiedb')
 	or die ("ERROR: connecting to mysql server!");	
 	$result = mysqli_query($db, $query)	or die("Error querying z_database"); 

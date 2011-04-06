@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
 <head>
-<title>Suggest information on a weapon for your fellow survivors</title>
+<title>Suggest information on a movie for your fellow survivors</title>
 </head>
 <!-- start header -->
 <?php
@@ -28,8 +28,7 @@
 				echo "<p><label for=\"run_time\">Run Time:</label> <input type=\"number\" name=\"run_time\" id=\"run_time\"/></p>";
 				echo "</br>";
 
-				echo "Reasoning for movie selection:<BR><TEXTAREA NAME=\"reasoning\" COLS=40 ROWS=6>
-					</TEXTAREA></p>";
+				echo "Reasoning for movie selection:<BR><TEXTAREA NAME=\"reasoning\" COLS=40 ROWS=6></TEXTAREA></p>";
 
 				echo "<p><label for=\"releaseDate\">Release Date:</label>
 					<input type=\"number\" name=\"month\" min=\"1\" max=\"12\" step=\"1\" value=\"1\" size=\"4.5\"/>

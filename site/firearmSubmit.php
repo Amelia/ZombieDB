@@ -31,9 +31,7 @@
 						</br>
 						</p><p>
 						Weapon Usage Info:<BR>
-						<TEXTAREA NAME=\"weaponUsage\" COLS=40 ROWS=6>
-
-						</TEXTAREA>
+						<TEXTAREA NAME=\"weaponUsage\" COLS=40 ROWS=6></TEXTAREA>
 						</p>
 
 						<p class =\"submit\"><input type =\"submit\" value=\"Submit\" />

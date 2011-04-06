@@ -32,9 +32,7 @@
 							</br>
 							</p><p>
 							Weapon Usage Info:<BR>
-							<TEXTAREA NAME=\"weaponUsage\" ID=\"weaponUsage\" COLS=40 ROWS=6>
-
-							</TEXTAREA>
+							<TEXTAREA NAME=\"weaponUsage\" ID=\"weaponUsage\" COLS=40 ROWS=6></TEXTAREA>
 							</p><p>
 							Weapon Maintenance:<BR>
 							<TEXTAREA NAME=\"weaponMain\" ID=\"weaponMain\" COLS=40 ROWS=6>
