@@ -68,7 +68,7 @@
 	       echo "<td>" . $row['reasoning'] . "</td>";
        echo "<td>";
        if (isset($_SESSION['name'])) {
-           $addF_condition = mysqli_query($db, "SELECT * FROM users natural join z_book_preferences natural join z_books where users.username = \"" . $_SESSION['name']."\" AND book_id = \"".$row['book_id']."\"");
+           $addF_condition = mysqli_query($db, "SELECT * FROM users natural join z_book_preferences natural join z_books natural join z_books_authors where users.username = \"" . $_SESSION['name']."\" AND book_id = \"".$row['book_id']."\"");
            if(mysqli_fetch_array($addF_condition) == null){
                     echo "<form action=\"favoriteInsert.php\" method=\"post\" class=\"preferenceform\">
                     <input type=\"hidden\" id=\"book_id\" name=\"book_id\" value=" . $row['book_id'] ." />
