@@ -18,77 +18,77 @@ mysqli_query($db,"USE zombiedb;");
 //--
 
 
-// -- ----------------------------
-// -- Table structure for `building_types`
-// -- ----------------------------
-mysqli_query($db,"
-CREATE TABLE `building_types` (
-  `building_id` int(11) NOT NULL AUTO_INCREMENT,
-  `building_type` varchar(20) DEFAULT NULL,
-  `safety_rating` int(11) DEFAULT NULL,
-  `reasoning` varchar(240) DEFAULT NULL,
-  PRIMARY KEY (`building_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
-");
-
-// -- ----------------------------
-// -- Records of building_types
-// -- ----------------------------
-mysqli_query($db,"
-INSERT INTO `building_types` VALUES ('1', 'Gazebo', '1', 'Generally, during a zombie apocalypse, its a good idea to choose a shelter with walls.')
-, ('2', 'Underground Bunker', '10', 'If they can figure out where you are, there are limited access points - provided your zombies don�t have superhuman tunneling capabilities.')
-, ('3', 'House', '4', 'The security of houses can vary; but with windows and doors, there are too many points of entry to make one truly safe from zombies.')
-, ('4', 'Jail', '9', 'Although they�re meant to keep people in, they�re great for keeping zombies out. Watch towers give you a combative edge, and the high barbed wire fences keep undead invaders at bay.')
-, ('5', 'Office Building', '6', 'Office buildings have as many (if not more) windows and doors as houses. However, their height gives you tactical advantage; you can see them coming and take defensive measures.');
-");
-
-// -- ----------------------------
-// -- Table structure for `safe_zones`
-// -- ----------------------------
-mysqli_query($db,"
-CREATE TABLE `safe_zones` (
-  `zone_id` int(11) NOT NULL AUTO_INCREMENT,
-  `street_number` int(11) DEFAULT NULL,
-  `street_address` varchar(35) DEFAULT NULL,
-  `city` varchar(25) DEFAULT NULL,
-  `state` char(2) DEFAULT NULL,
-  `building_type` varchar(25) DEFAULT NULL,
-  `status` char(1) DEFAULT NULL,
-  `last_updated` date DEFAULT NULL,
-  PRIMARY KEY (`zone_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-");
-
-// -- ----------------------------
-// -- Records of safe_zones
-// -- ----------------------------
-mysqli_query($db,"
-INSERT INTO `safe_zones` VALUES ('1', '203', 'Safe Haven St.', 'Happy Hills', 'VA', 'House', 'T', '2011-02-22')
-, ('2', '1301', 'College Ave., Trinkle Basement', 'Fredericksburg', 'VA', 'Underground Bunker', 'T', '2011-02-22');
-");
-
-// -- ----------------------------
-// -- Table structure for `stores`
-// -- ----------------------------
-mysqli_query($db,"
-CREATE TABLE `stores` (
-  `store_id` int(11) NOT NULL AUTO_INCREMENT,
-  `store_name` varchar(25) DEFAULT NULL,
-  `website` varchar(40) DEFAULT NULL,
-  `corporate_number` char(15) DEFAULT NULL,
-  PRIMARY KEY (`store_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-");
-
-// -- ----------------------------
-// -- Records of stores
-// -- ----------------------------
-mysqli_query($db,"
-INSERT INTO `stores` VALUES ('1', 'Walmart', 'www.walmart.com', '1-800-925-6278')
-, ('2', 'Gander Mountain', 'www.gandermountain.com', '888-5GANDER')
-, ('3', 'Lowe\'s', 'www.lowes.com', '336-658-4000')
-, ('4', 'Zombies R Us', 'www.zombiesrus.com', '866-ZOMBIES');
-");
+//// -- ----------------------------
+//// -- Table structure for `building_types`
+//// -- ----------------------------
+//mysqli_query($db,"
+//CREATE TABLE `building_types` (
+//  `building_id` int(11) NOT NULL AUTO_INCREMENT,
+//  `building_type` varchar(20) DEFAULT NULL,
+//  `safety_rating` int(11) DEFAULT NULL,
+//  `reasoning` varchar(240) DEFAULT NULL,
+//  PRIMARY KEY (`building_id`)
+//) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+//");
+//
+//// -- ----------------------------
+//// -- Records of building_types
+//// -- ----------------------------
+//mysqli_query($db,"
+//INSERT INTO `building_types` VALUES ('1', 'Gazebo', '1', 'Generally, during a zombie apocalypse, its a good idea to choose a shelter with walls.')
+//, ('2', 'Underground Bunker', '10', 'If they can figure out where you are, there are limited access points - provided your zombies don�t have superhuman tunneling capabilities.')
+//, ('3', 'House', '4', 'The security of houses can vary; but with windows and doors, there are too many points of entry to make one truly safe from zombies.')
+//, ('4', 'Jail', '9', 'Although they�re meant to keep people in, they�re great for keeping zombies out. Watch towers give you a combative edge, and the high barbed wire fences keep undead invaders at bay.')
+//, ('5', 'Office Building', '6', 'Office buildings have as many (if not more) windows and doors as houses. However, their height gives you tactical advantage; you can see them coming and take defensive measures.');
+//");
+//
+//// -- ----------------------------
+//// -- Table structure for `safe_zones`
+//// -- ----------------------------
+//mysqli_query($db,"
+//CREATE TABLE `safe_zones` (
+//  `zone_id` int(11) NOT NULL AUTO_INCREMENT,
+//  `street_number` int(11) DEFAULT NULL,
+//  `street_address` varchar(35) DEFAULT NULL,
+//  `city` varchar(25) DEFAULT NULL,
+//  `state` char(2) DEFAULT NULL,
+//  `building_type` varchar(25) DEFAULT NULL,
+//  `status` char(1) DEFAULT NULL,
+//  `last_updated` date DEFAULT NULL,
+//  PRIMARY KEY (`zone_id`)
+//) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+//");
+//
+//// -- ----------------------------
+//// -- Records of safe_zones
+//// -- ----------------------------
+//mysqli_query($db,"
+//INSERT INTO `safe_zones` VALUES ('1', '203', 'Safe Haven St.', 'Happy Hills', 'VA', 'House', 'T', '2011-02-22')
+//, ('2', '1301', 'College Ave., Trinkle Basement', 'Fredericksburg', 'VA', 'Underground Bunker', 'T', '2011-02-22');
+//");
+//
+//// -- ----------------------------
+//// -- Table structure for `stores`
+//// -- ----------------------------
+//mysqli_query($db,"
+//CREATE TABLE `stores` (
+//  `store_id` int(11) NOT NULL AUTO_INCREMENT,
+//  `store_name` varchar(25) DEFAULT NULL,
+//  `website` varchar(40) DEFAULT NULL,
+//  `corporate_number` char(15) DEFAULT NULL,
+//  PRIMARY KEY (`store_id`)
+//) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+//");
+//
+//// -- ----------------------------
+//// -- Records of stores
+//// -- ----------------------------
+//mysqli_query($db,"
+//INSERT INTO `stores` VALUES ('1', 'Walmart', 'www.walmart.com', '1-800-925-6278')
+//, ('2', 'Gander Mountain', 'www.gandermountain.com', '888-5GANDER')
+//, ('3', 'Lowe\'s', 'www.lowes.com', '336-658-4000')
+//, ('4', 'Zombies R Us', 'www.zombiesrus.com', '866-ZOMBIES');
+//");
 
 // -- ----------------------------
 // -- Table structure for `supply_list`
@@ -224,29 +224,54 @@ mysqli_query($db,"
 CREATE TABLE `z_books` (
   `book_id` int(11) NOT NULL AUTO_INCREMENT,
   `isbn` varchar(20) NOT NULL,
-  `title` varchar(50) DEFAULT NULL,
-  `author_firstname` varchar(15) DEFAULT NULL,
-  `author_lastname` varchar(20) DEFAULT NULL,
+  `title` varchar(100) DEFAULT NULL,
+  `author_id` int(11) NOT NULL,
   `page_count` int(11) DEFAULT NULL,
   `year_published` int(11) DEFAULT NULL,
   `reasoning` varchar(240) DEFAULT NULL,
   PRIMARY KEY (`book_id`,`isbn`),
   KEY `book_id` (`book_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 ");
 // -- ----------------------------
 // -- Records of z_books
 // -- ----------------------------
 mysqli_query($db,"
-INSERT INTO `z_books` VALUES ('1', '978-1400049622', 'The Zombie Survival Guide: Complete Protection fro', null, null, '288', '2003', 'Survival Guide')
-, ('1', '978-0060931841', 'World War Z: An Oral History of the Zombie War', null, null, '352', '2007', 'Zombie War Information')
-, ('2', '978-1402220128', 'Zombies for Zombies: Advice and Etiquette for the ', null, null, '272', '2009', 'Guide for Zombie Etiquette')
-, ('3', '978-1453720011', 'A Zombie Apocalypse', null, null, '70', '2010', null)
-, ('4', '978-0982949597', 'The Dying Times (a zombie apocalypse novel)', null, null, '282', '2010', null)
-, ('5', '978-0452296398', 'You Might Be a Zombie and Other Bad News: Shocking', null, null, '320', '2010', 'Zombie Identification')
-, ('6', '978-1449564872', 'The Zombie Survival Guide: How to Live Like a King', null, null, '128', '2009', 'Survival Guide')
-, ('7', '978-0307405777', 'The Zombie Survival Guide: Recorded Attacks ', null, null, '144', '2009', 'Survival Guide');
+INSERT INTO `z_books` (`book_id`, `isbn`, `title`, `author_id`, `page_count`, `year_published`, `reasoning`) VALUES
+(1, '978-1400049622', 'The Zombie Survival Guide: Complete Protection from the Living Dead', 1, 288, 2003, 'Survival Guide'),
+(2, '978-0060931841', 'World War Z: An Oral History of the Zombie War', 1, 352, 2007, 'Zombie War Information'),
+(3, '978-1402220128', 'Zombies for Zombies: Advice and Etiquette for the Living Dead', 3, 272, 2009, 'Guide for Zombie Etiquette'),
+(4, '978-1453720011', 'A Zombie Apocalypse', 4, 70, 2010, 'Zombie Theory'),
+(5, '978-0982949597', 'The Dying Times (a zombie apocalypse novel)', 5, 282, 2010, 'Zombie Theory'),
+(6, '978-1449564872', 'The Zombie Survival Guide: How to Live Like a King After the Outbreak', 6, 128, 2009, 'Survival Guide'),
+(7, '978-0307405777', 'The Zombie Survival Guide: Recorded Attacks ', 1, 144, 2009, 'Survival Guide');
 ");
+
+//-- --------------------------------------------------------
+//--
+//-- Table structure for table `z_books_authors`
+//--
+
+mysqli_query($db, "
+CREATE TABLE `z_books_authors` (
+  `author_id` int(11) NOT NULL AUTO_INCREMENT,
+  `firstname` varchar(25) NOT NULL,
+  `lastname` varchar(40) NOT NULL,
+  PRIMARY KEY (`author_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+");
+//--
+//-- Dumping data for table `z_books_authors`
+//--
+mysqli_query($db, "
+INSERT INTO `z_books_authors` (`author_id`, `firstname`, `lastname`) VALUES
+(1, 'Max', 'Brooks'),
+(3, 'David', 'Murphy'),
+(4, 'Keith', 'Leuthke'),
+(5, 'Brian', 'Kittrell'),
+(6, 'Etienne', 'DeForest');
+");
+    
 //-- ----------------------------
 //-- Table structure for `z_book_preferences`
 //-- ----------------------------
