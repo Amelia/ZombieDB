@@ -38,6 +38,7 @@
 				<li><a href="index.php">Z.A.S. Home </a></li>
 				<!--<li><a href="equipment.php">Survival Checklist</a></li>-->
 				<li><a href="strategies.php">Survival Strategies</a></li>
+				<li><a href="check.php">Survival Checklist</a></li>
 				<li><a href="weapons.php">Effective Weapons</a></li>
 				<li><a href="games.php">Zombie Games</a></li>
 				<li><a href="movie.php">Zombie Movies</a></li>
