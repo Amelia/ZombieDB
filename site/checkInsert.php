@@ -20,11 +20,12 @@
 		<div class="post">
 
 	<?php
-	$itemName = mysqli_real_escape_string($db, $_POST["itemName"]);
-	$itemType = mysqli_real_escape_string($db, $_POST["itemType"]);
-	$priority = $_POST["priority"];        
-    $quantity = $_POST["quantity"];
-	$item_usage = mysqli_real_escape_string($db, $_POST["item_usage"]);
+	include 'anti_xss.php';
+	$itemName = mysqli_real_escape_string($db, anti_xss($_POST["itemName"]));
+	$itemType = mysqli_real_escape_string($db, anti_xss($_POST["itemType"]));
+	$priority = anti_xss($_POST["priority"]);
+    $quantity = anti_xss($_POST["quantity"]);
+	$item_usage = mysqli_real_escape_string($db, anti_xss($_POST["item_usage"]));
 	
     $query= "INSERT INTO supply_list(item_name, item_type, priority_status, quantity, `usage`)
 			VALUES('".$itemName."','".$itemType."','".$priority."','".$quantity."', '".$item_usage."')";
