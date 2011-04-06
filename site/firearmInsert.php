@@ -20,10 +20,11 @@
 		<div class="post">
 
 	<?php
-	$weapon_name=$_POST["firearmName"];
-	$weapon_caliber=$_POST["firearmCaliber"];
-	$weapon_rounds=$_POST["rounds_per_reload"];
-	$weapon_usage=mysqli_real_escape_string($db, $_POST["weaponUsage"]);
+	include 'anti_xss.php';
+	$weapon_name=anti_xss($_POST["firearmName"]);
+	$weapon_caliber=anti_xss($_POST["firearmCaliber"]);
+	$weapon_rounds=anti_xss($_POST["rounds_per_reload"]);
+	$weapon_usage=mysqli_real_escape_string($db, anti_xss($_POST["weaponUsage"]));
         	
     
 	$query= "INSERT INTO weapons_firearms (weapon_name,caliber, rounds_per_reload, `usage`) 
