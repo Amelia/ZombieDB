@@ -30,7 +30,7 @@
 	
         
         	
-    $query= "INSERT INTO weapons_general (weapon_name, weapon_type, durability, provider, `usage`, maintenance) VALUES('".$weapon_name."','".$weapon_type."','".$weapon_durability."','".$weapon_provider."','".$weapon_usage."','".$weapon_maintenance."')";
+    $query= "INSERT INTO weapons_general (weapon_name, weapon_type, durability, `usage`, maintenance) VALUES('".$weapon_name."','".$weapon_type."','".$weapon_durability."','".$weapon_usage."','".$weapon_maintenance."')";
 	$db= mysqli_connect('localhost', 'zombieUser', 'zombie', 'zombiedb')
 	or die ("ERROR: connecting to mysql server!");	
 
