@@ -440,7 +440,7 @@ else
 			?>
 			</H3>
 			<table>
-			<tr><td>Enter Adminstrative Name:</td><td><input <?php echo $formEnable ?> type="text" name="root"></td></tr>
+			<tr><td>Enter Adminstrative Name:</td><td><input <?php echo $formEnable ?> type="text" value="root" name="root"></td></tr>
 			<tr><td>Enter Adminstrative Password:</td><td><input <?php echo $formEnable ?> type="password" name="pw"></td></tr>
 			</table>
 			<input <?php echo $formEnable ?> type="submit" name="create" value="Create DB">
