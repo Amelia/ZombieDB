@@ -36,7 +36,7 @@ include "dbconnect.php";
 include "anti_xss.php";
 $name = anti_xss($_POST['username']);
 $pw = $_POST['pw'];
-
+$newPW = $_POST['newpw'];
 
 $name=mysqli_real_escape_string($db,$name);
 $pw=mysqli_real_escape_string($db,$pw);
@@ -44,14 +44,15 @@ $pw=mysqli_real_escape_string($db,$pw);
 
 	$name = mysqli_real_escape_string($db,$name);
 	$pw = mysqli_real_escape_string($db,$pw);
+    $newPW = mysqli_real_escape_string($db, $newPW);
 
-	$query = "select * from users WHERE username = '$name' AND password = sha('$pw')";
+	$query = "select * from users WHERE username = \"".$name."\" AND password = sha1('".$pw."');";
 	$result = mysqli_query($db, $query);
 
 
 
 
-if ($row = mysqli_fetch_array($result)){
+if (mysqli_fetch_array($result) != null){
 
 //*************************************
 //** IF USER IS VALID, UPDATE PASSWD **
@@ -59,6 +60,8 @@ if ($row = mysqli_fetch_array($result)){
 //*************************************
 
 //Update the database here
+$query = "UPDATE users SET password = \"".sha1($newPW)."\" where username = \"".$name."\";";
+$result = mysqli_query($db, $query);
 
 	echo "Your password has been updated successfully.";
 }
